@@ -4,8 +4,11 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.Random;
 
 import ru.drewru.neo.framework.GameObject;
+import ru.drewru.neo.framework.ObjectId;
+import ru.drewru.neo.objects.Test;
 
 public class Game extends Canvas implements Runnable{
 
@@ -14,6 +17,18 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	private Thread thread;
 	
+	Hendler hendler;
+	
+	Random rand = new Random();
+	
+	public void init(){
+		hendler = new Hendler();
+		for(int i = 0;i<50;i++)	hendler.addObject(new Test(rand.nextInt(800), rand.nextInt(600), ObjectId.Test));
+		
+		//for(int i = 0;i<50;i++){
+		//g.fillRect(rand.nextInt(800), rand.nextInt(600), 32, 32);
+		//}
+	}
 
 	public synchronized void start(){
 		if(running) return;
@@ -25,6 +40,10 @@ public class Game extends Canvas implements Runnable{
 	
 	@Override
 	public void run() {
+		
+		init();
+		this.requestFocus();
+		
 		long lastTime = System.nanoTime();
 		double amongOfTicks = 60.0;
 		double ns = 1000000000/ amongOfTicks;
@@ -54,7 +73,7 @@ public class Game extends Canvas implements Runnable{
 	}
 
 	private void tick() {
-
+		hendler.tick();
 	}
 	
 	private void render() {
@@ -68,6 +87,8 @@ public class Game extends Canvas implements Runnable{
 		// Draw here
 		g.setColor(Color.black);
 		g.fillRect(0,0, getWidth(), getHeight());
+		
+		hendler.render(g);
 		
 		//////////////
 		g.dispose();

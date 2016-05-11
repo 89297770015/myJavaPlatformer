@@ -1,7 +1,9 @@
 package ru.drewru.neo.objects;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
+import java.util.Random;
 
 import ru.drewru.neo.framework.GameObject;
 import ru.drewru.neo.framework.ObjectId;
@@ -18,10 +20,16 @@ public class Test extends GameObject {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	//Random rand = new Random();
+	
 
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
-		
+		g.setColor(Color.red);
+		//for(int i = 0;i<50;i++){
+		g.fillRect((int)x, (int)y, 32, 32);
+		//}
+		//g.fillRect(100, 100, 32, 32);
 	}
 
 	public float getX() {
