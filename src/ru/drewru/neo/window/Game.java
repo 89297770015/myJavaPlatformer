@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import ru.drewru.neo.framework.GameObject;
+
 public class Game extends Canvas implements Runnable{
 
 	private static final long serialVersionUID = -1739443567028741921L;
@@ -12,6 +14,7 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	private Thread thread;
 	
+
 	public synchronized void start(){
 		if(running) return;
 		
